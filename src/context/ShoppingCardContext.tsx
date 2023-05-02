@@ -21,10 +21,10 @@ type ShoppingCartContext = {
 
 }
 
-const ShoppingCartContext = createContext({} as ShoppingCartContext)
+const ShopingCartContext = createContext({} as ShoppingCartContext)
 
 export function useShoppingCart() {
-    return useContext(ShoppingCartContext)
+    return useContext(ShopingCartContext)
 }
 
 
@@ -50,7 +50,7 @@ export function ShoppingCardProvaider({ children }: ShoppingCartProvaiderProps) 
             }
             else {
                 return currItems.map(item => {
-                    if (item.id == id) {
+                    if (item.id === id) {
                         return {...item, quantity:item.quantity + 1 }
                     } 
                     else {
@@ -84,11 +84,9 @@ export function ShoppingCardProvaider({ children }: ShoppingCartProvaiderProps) 
 
 
     return (
-        <ShoppingCartContext.Provider value={{ getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart, cartItems, cartQuantity, openCart, closeCart }}>
-            
-            {children}
-<ShoppingCart isOpen={isOpen}/>
-
-        </ShoppingCartContext.Provider>
+        <ShopingCartContext.Provider value={{ getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart, cartItems, cartQuantity, openCart, closeCart }}>
+        {children}
+        <ShoppingCart isOpen={isOpen} />
+        </ShopingCartContext.Provider>
     )
 }
